@@ -8,4 +8,8 @@ import java.util.Optional;
 public interface RankingRepository extends JpaRepository<Ranking, Long> {
 
     public Optional<Ranking> findById(Long id);
+
+    public Optional<Ranking> findByName(String name);
+
+    public Ranking save(Ranking ranking);
 }
