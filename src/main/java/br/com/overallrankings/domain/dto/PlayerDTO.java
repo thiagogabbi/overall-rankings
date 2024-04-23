@@ -11,15 +11,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PlayerDTO {
 
-        private Long id;
-
         private String name;
 
         private String email;
 
         private Long rankingId;
 
-        private Double rating;
-
-        private Integer totalPoints;
 }

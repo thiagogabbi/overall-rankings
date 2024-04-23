@@ -1,7 +1,10 @@
 package br.com.overallrankings.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +13,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity(name = "players")
 public class Player {
 
@@ -23,10 +27,8 @@ public class Player {
 
     @ManyToOne
     @JoinColumn(name = "ranking_id")
+    @JsonBackReference
     private Ranking ranking;
-
-    @OneToMany(mappedBy = "player")
-    private List<MatchParticipation> matchParticipationList;
 
     private Double rating;
 

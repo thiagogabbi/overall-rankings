@@ -10,4 +10,6 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
 
     public Optional<Player> findByEmail(String email);
 
+    public Player save(Player player);
+
 }

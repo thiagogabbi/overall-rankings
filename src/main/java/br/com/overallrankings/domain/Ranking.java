@@ -1,6 +1,7 @@
 package br.com.overallrankings.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,9 +21,4 @@ public class Ranking {
 
     private String name;
 
-    @OneToMany(mappedBy = "ranking")
-    private List<Player> players;
-
-    @OneToMany(mappedBy = "ranking")
-    private List<Match> matches;
 }
