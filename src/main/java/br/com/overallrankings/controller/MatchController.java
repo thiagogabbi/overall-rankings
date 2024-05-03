@@ -1,19 +1,23 @@
 package br.com.overallrankings.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import br.com.overallrankings.domain.dto.MatchCreationDTO;
+import br.com.overallrankings.service.MatchService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/matches")
 public class MatchController {
 
+    @Autowired
+    private MatchService matchService;
+
     @PostMapping("/create")
-    // Esse método vai criar uma partida, mas ela pode ser criada já fechada ou aberta.
-    // Abaixo, vou criar um método para fechar a partida
-    public String createMatch() {
-        return "Match created";
+    public ResponseEntity createMatch(@RequestBody MatchCreationDTO matchCreationDTO, @RequestParam(required = false) boolean closed) {
+        MatchCreationDTO newMatch = matchService.createMatch(matchCreationDTO, closed);
+        return new ResponseEntity(newMatch, HttpStatus.CREATED);
     }
 
     @PutMapping("/close")
